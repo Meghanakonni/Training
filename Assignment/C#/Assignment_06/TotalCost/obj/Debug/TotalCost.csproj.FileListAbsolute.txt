@@ -1,0 +1,10 @@
+D:\Training\Assignment\C#\Assignment_06\TotalCost\bin\Debug\TotalCost.exe.config
+D:\Training\Assignment\C#\Assignment_06\TotalCost\bin\Debug\TotalCost.exe
+D:\Training\Assignment\C#\Assignment_06\TotalCost\bin\Debug\TotalCost.pdb
+D:\Training\Assignment\C#\Assignment_06\TotalCost\bin\Debug\Assignment_06.dll
+D:\Training\Assignment\C#\Assignment_06\TotalCost\bin\Debug\Assignment_06.pdb
+D:\Training\Assignment\C#\Assignment_06\TotalCost\obj\Debug\TotalCost.csproj.AssemblyReference.cache
+D:\Training\Assignment\C#\Assignment_06\TotalCost\obj\Debug\TotalCost.csproj.CoreCompileInputs.cache
+D:\Training\Assignment\C#\Assignment_06\TotalCost\obj\Debug\TotalCost.csproj.CopyComplete
+D:\Training\Assignment\C#\Assignment_06\TotalCost\obj\Debug\TotalCost.exe
+D:\Training\Assignment\C#\Assignment_06\TotalCost\obj\Debug\TotalCost.pdb

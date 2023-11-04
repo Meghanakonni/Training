@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Even and Odd Numbers</title>
+</head>
+<body>
+    <h1>Displaying Even and Odd Numbers</h1>
+    <ul id="output"></ul>
+
+    <script>
+        const outputList = document.getElementById('output');
+
+        for (let i = 0; i <= 15; i++) {
+            const listItem = document.createElement('li');
+            if (i % 2 === 0) {
+                listItem.textContent = i + ' is even';
+            } else {
+                listItem.textContent = i + ' is odd';
+            }
+            outputList.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>

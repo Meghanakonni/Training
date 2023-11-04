@@ -1,0 +1,7 @@
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\bin\Debug\Test_05_ADO.exe.config
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\bin\Debug\Test_05_ADO.exe
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\bin\Debug\Test_05_ADO.pdb
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\obj\Debug\Test_05_ADO.csproj.AssemblyReference.cache
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\obj\Debug\Test_05_ADO.csproj.CoreCompileInputs.cache
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\obj\Debug\Test_05_ADO.exe
+D:\Training\Tests\C#_Test\Test_05_ADO\Test_05_ADO\obj\Debug\Test_05_ADO.pdb

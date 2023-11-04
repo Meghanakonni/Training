@@ -1,0 +1,7 @@
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\bin\Debug\WT_01.exe.config
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\bin\Debug\WT_01.exe
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\bin\Debug\WT_01.pdb
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\obj\Debug\WT_01.csproj.AssemblyReference.cache
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\obj\Debug\WT_01.csproj.CoreCompileInputs.cache
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\obj\Debug\WT_01.exe
+D:\Training\Tests\WebTechnology_Test\WT_01\WT_01\obj\Debug\WT_01.pdb

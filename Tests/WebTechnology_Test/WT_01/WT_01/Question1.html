@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Sample Calculator</h1>
+    <p>Enter Any Two Numbers:</p>
+
+    <label for="num1">Number 1:</label>
+    <input type="number" id="num1" placeholder="Enter Number 1">
+
+    <label for="num2">Number 2:</label>
+    <input type="number" id="num2" placeholder="Enter Number 2">
+
+    <button onclick="multiply()">Multiply</button>
+
+    <button onclick="divide()">Divide</button>
+
+    <p id="result"></p>
+
+    <script>
+        function multiply() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").textContent = "Enter Numbers.";
+            } else {
+                let multiplicationResult = num1 * num2;
+                document.getElementById("result").textContent = `Multiplication result: ${multiplicationResult}`;
+            }
+        }
+
+        function divide() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").textContent = "Enter Numbers.";
+            } else {
+                if (num2 !== 0) {
+                    let divisionResult = num1 / num2;
+                    document.getElementById("result").textContent = `Division result: ${divisionResult}`;
+                } else {
+                    document.getElementById("result").textContent = "Division by zero is not allowed.";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

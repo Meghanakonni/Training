@@ -1,0 +1,7 @@
+D:\Training\Assignment\Assignment_02\Assignment_02\bin\Debug\Assignment_02.exe.config
+D:\Training\Assignment\Assignment_02\Assignment_02\bin\Debug\Assignment_02.exe
+D:\Training\Assignment\Assignment_02\Assignment_02\bin\Debug\Assignment_02.pdb
+D:\Training\Assignment\Assignment_02\Assignment_02\obj\Debug\Assignment_02.csproj.AssemblyReference.cache
+D:\Training\Assignment\Assignment_02\Assignment_02\obj\Debug\Assignment_02.csproj.CoreCompileInputs.cache
+D:\Training\Assignment\Assignment_02\Assignment_02\obj\Debug\Assignment_02.exe
+D:\Training\Assignment\Assignment_02\Assignment_02\obj\Debug\Assignment_02.pdb
