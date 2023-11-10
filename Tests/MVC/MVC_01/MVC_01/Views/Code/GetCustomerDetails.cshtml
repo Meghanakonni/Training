@@ -1,0 +1,19 @@
+﻿@model MVC_01.Models.CustomerDetails
+
+@{ ViewBag.Title = "Customer Details"; }
+
+<h2 style="color: red">Customer Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Customer ID</th>
+        <th>Company Name</th>
+        <th>Contact Name</th>
+        
+    </tr>
+    <tr>
+        <td>@Model.CustomerID</td>
+        <td>@Model.CompanyName</td>
+        <td>@Model.ContactName</td>        
+    </tr>
+</table>
