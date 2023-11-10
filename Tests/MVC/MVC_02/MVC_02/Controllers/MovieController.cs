@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC_02.Models;
@@ -33,6 +34,20 @@ namespace MVC_02.Controllers
                 return RedirectToAction("Index");
             }
 
+            return View(movie);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
             return View(movie);
         }
 
@@ -75,10 +90,23 @@ namespace MVC_02.Controllers
         }
 
         // GET: Movie/MoviesByYear
-        public ActionResult MoviesByYear(int year)
+        public ActionResult MoviesByYear(int? year)
         {
+            if (year == null)
+            {
+                return View(); // Display the initial view without filtering if year is not provided
+            }
+
             var movies = db.Movies.Where(m => m.DateofRelease != null && m.DateofRelease.Value.Year == year).ToList();
             return View(movies);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -1,45 +1,49 @@
 ﻿@model IEnumerable<MVC_02.Models.Movie>
 
-@{
-    ViewBag.Title = "MoviesByYear";
-}
+@{ ViewBag.Title = "MoviesByYear"; }
 
-<h2>MoviesByYear</h2>
+<h2>Movies Released in Year</h2>
 
+@using (Html.BeginForm("MoviesByYear", "Movie", FormMethod.Get))
+{
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @Html.TextBox("year", null, new { @class = "form-control", placeholder = "Enter year" })
+    <input type="submit" value="Search" class="btn btn-primary" />
+</p>}
+
+@if (Model != null && Model.Any())
+{
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Mid)
+            Movie ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MovieName)
+            Movie Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateofRelease)
+            Date of Release
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MovieName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateofRelease)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @item.Mid
+    </td>
+    <td>
+        @item.MovieName
+    </td>
+    <td>
+        @item.DateofRelease
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = item.Mid })
+    </td>
+</tr>}
+</table> }
+            else
+            {
+<p>No movies found for the specified year.</p>}

@@ -3,7 +3,7 @@ create database MoviesDB
 use MoviesDB
 
 create table Movie(
-Mid int,MovieName varchar(30),DateofRelease Date)
+Mid int primary key ,MovieName varchar(30),DateofRelease Date)
 
 insert into Movie values
 (1, 'Athadu', '2002-01-01'),
