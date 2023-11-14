@@ -8,9 +8,8 @@ namespace MVC_02.Models
 {
     public class MovieContext : DbContext
     {
-        public MovieContext() : base("MoviesDB") { }
-
+        public MovieContext() : base("name=connectstr")
+        { }
         public DbSet<Movie> Movies { get; set; }
     }
-
 }
