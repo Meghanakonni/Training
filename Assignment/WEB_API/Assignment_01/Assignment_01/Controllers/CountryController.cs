@@ -14,9 +14,10 @@ namespace Assignment_01.Controllers
         static List<Country> countrylist = new List<Country>()
         {
             new Country{ID=1, CountryName="India",Capital="New Delhi"},
-            new Country{ID=2, CountryName="Germany",Capital="Berlin"},
+            new Country{ID=2, CountryName="United Kingdom",Capital="London"},
             new Country{ID=3, CountryName="France",Capital="Paris"},
-            new Country{ID=4, CountryName="Australia",Capital="Canberra"},
+            new Country{ID=4, CountryName="South Korea",Capital="Seoul"},
+            new Country{ID=5, CountryName="Germany",Capital="Berlin"},
         };
 
         [HttpGet]
