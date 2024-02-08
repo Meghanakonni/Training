@@ -1,0 +1,580 @@
+using System;
+
+namespace Case_Study_01
+{
+    class Student
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public DateTime dateofbirth { get; set; }
+
+        public Student(int id, string name, DateTime dob) // creating a constructor for Student class
+        {
+            ID = id;
+            Name = name;
+            dateofbirth = dob;
+        }
+    }
+
+    class Info
+    {
+        public void Display(Student student)
+        {
+            Console.WriteLine($"Student ID: {student.ID}");
+            Console.WriteLine($"Student Name: {student.Name}");
+            Console.WriteLine($"Student Date of Birth: {student.dateofbirth}");
+        }
+    }
+    class App
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter The Number Of Students:");
+            int numOfstudents = int.Parse(Console.ReadLine());
+
+            Scenario1(numOfstudents);
+            Scenario2(numOfstudents);
+
+            Console.Read();
+        }
+
+        static void Scenario1(int numOfstudents)
+        {
+            Console.WriteLine("Scenario 1:");
+
+            for (int i = 0; i < numOfstudents; i++)
+            {
+                Console.WriteLine($"Enter Details for Student {i + 1}:");
+
+                Console.WriteLine("Enter Student ID:");
+                int id = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter Student Name:");
+                string name = Console.ReadLine();
+
+                Console.WriteLine("Enter Student Date Of Birth (YYYY-MM-DD):");
+                DateTime dob = DateTime.Parse(Console.ReadLine());
+
+                Student student = new Student(id, name, dob); //creating an object of student class
+
+                Info info = new Info();
+                Console.WriteLine("Scenario-1 Student Details");
+                info.Display(student);
+            }
+        }
+
+        static void Scenario2(int numOfstudents)
+        {
+            Console.WriteLine("Scenario 2:");
+
+            Student[] students1 = new Student[numOfstudents]; //creating an array
+
+            for (int i = 0; i < numOfstudents; i++)
+            {
+                Console.WriteLine($"Enter details for Student {i + 1}:");
+
+                Console.WriteLine("Enter Student ID: ");
+                int id = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter Student Name: ");
+                string name = Console.ReadLine();
+
+                Console.WriteLine("Enter Student Date Of Birth (YYYY-MM-DD):");
+                DateTime dob = DateTime.Parse(Console.ReadLine());
+
+                students1[i] = new Student(id, name, dob);
+            }
+            Info info = new Info();
+            foreach (var student in students1)
+            {
+                Console.WriteLine(" Scenario-2  Student Details:");
+                info.Display(student);
+            }
+        }
+    }
+}
+
+
+using System;
+using System.Linq;
+using NodaTime;
+
+namespace Case_Study_02
+{
+    public class Student
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string DateOfBirth { get; set; }
+    }
+
+    public class Course
+    {
+        public int CourseId { get; set; }
+        public string CourseName { get; set; }
+    }
+
+    public class Enroll
+    {
+        public Student Student { get; set; }
+        public Course Course { get; set; }
+        public LocalDate EnrollmentDate { get; set; }
+    }
+
+
+    public class AppEngine
+    {
+        Student[] students = new Student[100];
+        int studentCount = 0;
+
+        Course[] courses = new Course[50];
+        int courseCount = 0;
+
+        Enroll[] enrollments = new Enroll[500];
+        int enrollmentCount = 0;
+
+        public void Introduce(Course course)
+        {
+            Console.WriteLine($"Course ID: {course.CourseId}, Course Name: {course.CourseName}");
+            courses[courseCount++] = course;
+        }
+
+        public void Register(Student student)
+        {
+            students[studentCount++] = student;
+        }
+
+        public Student[] ListOfStudents()
+        {
+            Student[] result = new Student[studentCount];
+            Array.Copy(students, result, studentCount);
+            return result;
+        }
+        public Course[] ListOfCourses()
+        {
+            Course[] result = new Course[courseCount];
+            Array.Copy(courses, result, courseCount);
+            return result;
+        }
+        public void Enroll(Student student, Course course)
+        {
+            enrollments[enrollmentCount++] = new Enroll { Student = student, Course = course, EnrollmentDate = LocalDate.FromDateTime(DateTime.Now) };
+        }
+
+        public Enroll[] ListOfEnrollments()
+        {
+            Enroll[] result = new Enroll[enrollmentCount];
+            Array.Copy(enrollments, result, enrollmentCount);
+            return result;
+        }
+    }
+
+    public class Info
+    {
+        public void DisplayStudentDetails(Student student)
+        {
+            Console.WriteLine($"Student ID:{student.Id}, Name: {student.Name}, Date Of Birth: {student.DateOfBirth}");
+        }
+        public void DisplayEnrollmentDetails(Enroll enrollment)
+        {
+            Console.WriteLine($"Student: {enrollment.Student.Name}, Course: {enrollment.Course.CourseName}, Enrollment Date: {enrollment.EnrollmentDate}");
+        }
+    }
+
+    class App
+    {
+        static void Main(string[] args)
+        {
+            AppEngine engine = new AppEngine();
+            Info info = new Info();
+
+            Console.WriteLine("Enter the number of courses to add:");
+            int numberOfCourses = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numberOfCourses; i++)
+            {
+                Console.WriteLine($"Enter course details for course {i + 1}:");
+
+                Console.Write("Course ID: ");
+                int courseId = int.Parse(Console.ReadLine());
+
+                Console.Write("Course Name: ");
+                string courseName = Console.ReadLine();
+
+                Course course = new Course { CourseId = courseId, CourseName = courseName };
+                engine.Introduce(course);
+            }
+
+            Console.WriteLine("Enter The Number Of Student Enrollment Details To Add:");
+            int numberOfStudents = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numberOfStudents; i++)
+            {
+                Console.WriteLine($"Enter student details for student {i + 1}:");
+
+                Console.Write("ID: ");
+                int studentId = int.Parse(Console.ReadLine());
+
+                Console.Write("Name: ");
+                string studentName = Console.ReadLine();
+
+                Console.Write("Date of Birth: ");
+                string studentDob = Console.ReadLine();
+
+                Student student = new Student { Id = studentId, Name = studentName, DateOfBirth = studentDob };
+                engine.Register(student);
+
+                Console.WriteLine($"Select a course for student {student.Name}:");
+
+                foreach (var course in engine.ListOfCourses())
+                {
+                    Console.WriteLine($"Course ID: {course.CourseId}, Course Name: {course.CourseName}");
+                }
+
+                int selectedCourseId = int.Parse(Console.ReadLine());
+                Course selectedCourse = engine.ListOfCourses().FirstOrDefault(c => c.CourseId == selectedCourseId);
+
+                if (selectedCourse != null)
+                {
+                    engine.Enroll(student, selectedCourse);
+                }
+                else
+                {
+                    Console.WriteLine("Sorry! Invalid Course Selection. Enrollment Not Recorded...\n");
+                }
+            }
+
+            Console.WriteLine("List of Students:");
+            var listOfStudents = engine.ListOfStudents();
+
+            foreach (var student in listOfStudents)
+            {
+                Console.WriteLine($"ID: {student.Id}, Name: {student.Name}, Date of Birth: {student.DateOfBirth}");
+                info.DisplayStudentDetails(student);
+            }
+
+            Console.WriteLine("List of Courses:");
+            var listOfCourses = engine.ListOfCourses();
+
+            foreach (var course in listOfCourses)
+            {
+                Console.WriteLine($"Course ID: {course.CourseId}, Course Name: {course.CourseName}");
+            }
+
+            Console.WriteLine("List of Enrollments:");
+            var listOfEnrollments = engine.ListOfEnrollments();
+
+            foreach (var enrollment in listOfEnrollments)
+            {
+                info.DisplayEnrollmentDetails(enrollment);
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NodaTime;
+
+
+namespace Case_Study_03_04
+{
+    public class Student
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string DateOfBirth { get; set; }
+    }
+
+    public class Course
+    {
+        public int CourseId { get; set; }
+        public string CourseName { get; set; }
+    }
+    public class Enroll
+    {
+        public Student Student { get; set; }
+        public Course Course { get; set; }
+        public LocalDate EnrollmentDate { get; set; }
+    }
+    public class AppEngine
+    {
+        List<Student> students = new List<Student>();
+        List<Course> courses = new List<Course>();
+        List<Enroll> enrollments = new List<Enroll>();
+
+        public void Introduce(Course course)
+        {
+            Console.WriteLine($"Course ID: {course.CourseId}, Course Name: {course.CourseName}");
+            courses.Add(course);
+        }
+
+        public void Register(Student student)
+        {
+            students.Add(student);
+        }
+
+        public Student[] ListOfStudents()
+        {
+            return students.ToArray();
+        }
+
+        public Course[] ListOfCourses()
+        {
+            return courses.ToArray();
+        }
+
+        public void Enroll(Student student, Course course)
+        {
+            enrollments.Add(new Enroll { Student = student, Course = course, EnrollmentDate = LocalDate.FromDateTime(DateTime.Now) });
+        }
+        public Enroll[] ListOfEnrollments()
+        {
+            return enrollments.ToArray();
+        }
+    }
+    public abstract class UserInterface
+    {
+        protected AppEngine appEngine;
+        public UserInterface(AppEngine engine)
+        {
+            appEngine = engine;
+        }
+
+        public abstract void ShowFirstScreen();
+        public abstract void ShowStudentScreen();
+        public abstract void ShowAdminScreen();
+        public abstract void ShowAllStudentsScreen();
+        public abstract void ShowStudentRegistrationScreen();
+        public abstract void IntroduceNewCourseScreen();
+        public abstract void ShowAllCoursesScreen();
+    }
+
+    public class ConsoleUserInterface : UserInterface
+    {
+        public ConsoleUserInterface(AppEngine engine) : base(engine) { }
+        public override void ShowFirstScreen()
+        {
+            Console.WriteLine("Welcome to SMS (Student Mgmt. System) v1.0");
+            Console.WriteLine("Tell us who you are:\n1. Student\n2. Admin");
+            Console.Write("Enter your choice (1 or 2): ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    ShowStudentScreen();
+                    break;
+
+                case 2:
+                    ShowAdminScreen();
+                    break;
+
+                default:
+                    Console.WriteLine("You Have Entered an Invalid choice. Please enter 1 or 2.");
+                    ShowFirstScreen();
+                    break;
+            }
+        }
+        public override void ShowStudentScreen()
+        {
+            Console.WriteLine("Welcome To Student Screen\n");
+            Console.WriteLine("1. Register Student ");
+            Console.WriteLine("2. List of Courses ");
+            Console.WriteLine("3. Enroll Students With a Course");
+            Console.WriteLine("4. Back to Main Menu\n");
+            Console.Write("Enter your choice: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    ShowStudentRegistrationScreen();
+                    break;
+
+                case 2:
+                    IntroduceNewCourseScreen();
+                    break;
+
+                case 3:
+                    ShowAllStudentsScreen();
+                    break;
+
+                case 4:
+                    ShowFirstScreen();
+                    break;
+
+                default:
+                    Console.WriteLine("You Have Entered an Invalid choice. Please enter a valid option.");
+                    ShowStudentScreen();
+                    break;
+            }
+        }
+
+        public override void ShowAdminScreen()
+        {
+            Console.WriteLine("Welcome To Admin Screen\n");
+            Console.WriteLine("1. List of Courses");
+            Console.WriteLine("2. Back to Main Menu\n");
+            Console.Write("Enter your choice: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    ShowAllCoursesScreen();
+                    break;
+
+                case 2:
+                    ShowFirstScreen();
+                    break;
+
+                default:
+                    Console.WriteLine("You Have Entered an Invalid choice. Please enter a valid option.");
+                    ShowAdminScreen();
+                    break;
+            }
+        }
+        public override void ShowAllStudentsScreen()
+        {
+            Console.WriteLine("List of Students:\n");
+            var listOfStudents = appEngine.ListOfStudents();
+
+            foreach (var student in listOfStudents)
+            {
+                Console.WriteLine($"ID: {student.Id}, Name: {student.Name}, Date of Birth: {student.DateOfBirth}");
+            }
+
+            Console.Write("Enter The ID Of The Student You Would Like To Select: \n");
+            int selectedStudentId = int.Parse(Console.ReadLine());
+
+            var selectedStudent = listOfStudents.FirstOrDefault(student => student.Id == selectedStudentId);
+
+            if (selectedStudent != null)
+            {
+                Console.WriteLine($"Selected Student: ID: {selectedStudent.Id}, Name: {selectedStudent.Name}");
+                Console.WriteLine("List of Courses:");
+                var listOfCourses = appEngine.ListOfCourses();
+                foreach (var course in listOfCourses)
+                {
+                    Console.WriteLine($"Course ID: {course.CourseId}, Course Name: {course.CourseName}");
+                }
+
+                Console.Write("Enter The ID Of The Course You Want To Enroll The Student In: ");
+                int selectedCourseId = int.Parse(Console.ReadLine());
+
+                var selectedCourse = listOfCourses.FirstOrDefault(course => course.CourseId == selectedCourseId);
+
+                if (selectedCourse != null)
+                {
+                    appEngine.Enroll(selectedStudent, selectedCourse);
+                    Console.WriteLine($"Enrolled '{selectedStudent.Name}' in the course '{selectedCourse.CourseName}' successfully!\n");
+                }
+
+                else
+                {
+                    Console.WriteLine("OOPS!! It's an Invalid Course ID. Enrollment failed.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("OOPS!! It's an Invalid student ID.");
+            }
+            ShowStudentScreen();
+        }
+
+        public override void ShowStudentRegistrationScreen()
+        {
+            Console.WriteLine("You Have Selected 'Student Registration Screen' ");
+            Console.WriteLine("Enter The Number Of Student Enrollment Details To Add:\n");
+            int numOfStudents = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numOfStudents; i++)
+            {
+                Console.WriteLine($"Enter Details For Student {i + 1}:");
+
+                Console.Write("ID: ");
+                int studentId = int.Parse(Console.ReadLine());
+
+                Console.Write("Name: ");
+                string studentName = Console.ReadLine();
+
+                Console.Write("Date of Birth: ");
+                string studentDob = Console.ReadLine();
+
+                Student student = new Student { Id = studentId, Name = studentName, DateOfBirth = studentDob };
+                appEngine.Register(student);
+
+                Console.WriteLine("Hurrayyy...!!! Student Registered Successfully!\n");
+            }
+            ShowStudentScreen();
+        }
+        public override void IntroduceNewCourseScreen()
+        {
+            Console.WriteLine("You Have Selected To Introduce a 'New Course Screen' ");
+            Console.WriteLine("Enter The Number Of Courses To Add:\n");
+            int numOfCourses = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numOfCourses; i++)
+            {
+                Console.WriteLine($"Enter Details For Course {i + 1}:");
+
+                Console.Write("Course ID: ");
+                int courseId = int.Parse(Console.ReadLine());
+
+                Console.Write("Course Name: ");
+                string courseName = Console.ReadLine();
+
+                Course course = new Course { CourseId = courseId, CourseName = courseName };
+
+                appEngine.Introduce(course);
+                Console.WriteLine("Hurrayyy..!!! Course introduced successfully!\n");
+            }
+            ShowStudentScreen();
+        }
+        public override void ShowAllCoursesScreen()
+        {
+            Console.WriteLine("List of Courses:");
+            var listOfCourses = appEngine.ListOfCourses();
+
+            foreach (var course in listOfCourses)
+            {
+                Console.WriteLine($"Course ID: {course.CourseId}, Course Name: {course.CourseName}");
+            }
+            ShowAdminScreen();
+        }
+    }
+    class App
+    {
+        static void Main(string[] args)
+        {
+            AppEngine engine = new AppEngine();
+            UserInterface ui = new ConsoleUserInterface(engine);
+            ui.ShowFirstScreen();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
